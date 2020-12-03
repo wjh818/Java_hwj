@@ -2,6 +2,7 @@ package myhadoop;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -26,6 +27,19 @@ public class DelayCountWithCounter extends Configured implements Tool{
 		int res = ToolRunner.run(new Configuration(), 
 								 new DelayCountWithCounter(), 
 								 args);
+		
+		// 설정 정보 필요
+		Configuration conf = new Configuration();
+						
+		// output 경로가 이미 있으면 지워주자
+		FileSystem hdfs = FileSystem.get(conf);
+		// output 경로 확인
+		Path outPath = new Path(args[1]); // 출력 경로
+		if (hdfs.exists(outPath)) {
+			// 있으면 지우자
+			hdfs.delete(outPath, true);
+		}
+				
 	}
 
 	// 실제 Tool 인터페이스가 실행해야 할 로직
@@ -39,6 +53,7 @@ public class DelayCountWithCounter extends Configured implements Tool{
 			System.err.println("Usage: DelayCountWithCounter <input> <output>");
 			System.exit(2);
 		}
+		
 		
 		// 잡 생성
 		Job job = Job.getInstance(getConf(), "DelayCountWithCounter");
