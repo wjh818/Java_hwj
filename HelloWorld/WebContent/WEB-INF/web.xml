@@ -10,4 +10,27 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- servlet 등록 -->
+  <servlet>
+  <!-- servlet-name은 서블릿을 식별하기 위한 이름 -->
+	<servlet-name>MyServlet</servlet-name> <!--  (3)  -->
+	<!-- 실제 요청을 처리할 서블릿 클래스 -->
+	<servlet-class>HelloServlet</servlet-class> <!--  (4)  -->  
+  </servlet>
+  
+  <!-- 서블릿 매핑: 요청을 처리할 수 있는 서블릿을 찾기 위한 정보 -->
+  <servlet-mapping>
+  	<servlet-name>MyServlet</servlet-name> <!--  (2)  -->
+  	<url-pattern>/hs</url-pattern> <!--  (1)  -->
+  </servlet-mapping>
+  
+  <!-- 사용자가 /hs 요청을 전달했을 때 
+  (1) 사용자의 요청을 처리한 매핑 정보를 찾는다
+  (2) 해당 요청을 처리할 수 있는 서블릿을 이름을 찾는다
+  (3) 같은 이름을 가진 서블릿 정보를 찾는다
+  (4) 그 요청을 처리할 수 있는 실제 서블릿 클래스를 찾아서
+  (5) 요청 정보를 객체화 해서 처리할 수 있는 doGet, doPost 등 메서드에 전달
+  -->
+  
 </web-app>
