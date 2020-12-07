@@ -30,7 +30,7 @@ public class HelloServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// POST 방식의 요청을 처리
 		// 파라미터를 받아올 때 파라미터의 적절한 인코딩 정보를 전달
-		req.setCharacterEncoding("UTF-8");
+//		req.setCharacterEncoding("UTF-8");
 		// 데이터 불러오기
 		String firstName = req.getParameter("first_name");
 		String lastName = req.getParameter("last_name");
